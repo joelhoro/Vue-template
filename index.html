@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="main">
+        <my-component :x="x"></my-component>
+    </div>
+</body>
+</html>
+
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+<link href="./node_modules/boostrap/dist/css/bootstrap.css" type="stylesheet" type="text/css">
+<script src="./lib/socket.io.js"></script>
+
+
+<script type="module">
+import Vue from '../node_modules/vue/dist/vue.esm.browser.js';
+import {myComponent} from "./js/myComponent.js";
+
+var socket = io();
+socket.on('connect', function() {
+    socket.emit('message', {data: 123});
+    console.log("Connected");
+})
+
+new Vue({
+    el: '#main',
+    components: {'my-component': myComponent},
+    data: {
+            x: 123
+        }
+});
+</script>
