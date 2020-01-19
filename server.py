@@ -1,8 +1,12 @@
-from flask import send_file, Flask
+from flask import send_file, Flask, redirect
 from flask_socketio import SocketIO
 
 app = Flask(__name__)
 socketio = SocketIO(app)
+
+@app.route('/')
+def homepage():
+    return redirect('/index.html')
 
 @app.route('/<path:filename>')
 def serve_file(filename):
