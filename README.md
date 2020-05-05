@@ -1,3 +1,3 @@
 # Vue-template
-npm install
-pip install -r requirements.txt
+
+source setup.sh
