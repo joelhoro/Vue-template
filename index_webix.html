@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Webix test</title>
+</head>
+
+<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.7.94/css/materialdesignicons.css" type="text/css" charset="utf-8">
+
+<link href="./webix/webix/codebase/webix.min.css" rel="stylesheet" type="text/css">
+<script src="./webix/webix/codebase/webix.js"></script>
+
+
+
+
+<body>
+
+</body>
+</html>
+
+
+<script type='module'>
+
+var menu_data = [
+	{id: "dashboard", icon: "mdi mdi-view-dashboard", value: "Dashboards",  data:[
+		{ id: "dashboard1", value: "Dashboard 1"},
+		{ id: "dashboard2", value: "Dashboard 2"}
+	]},
+	{id: "layouts", icon: "mdi mdi-view-column", value:"Layouts", data:[
+		{ id: "accordions", value: "Accordions"},
+		{ id: "portlets", value: "Portlets"}
+	]},
+	{id: "tables", icon: "mdi mdi-table", value:"Data Tables", data:[
+		{ id: "tables1", value: "Datatable"},
+		{ id: "tables2", value: "TreeTable"},
+		{ id: "tables3", value: "Pivot"}
+	]},
+	{id: "uis", icon: "mdi mdi-puzzle", value:"UI Components", data:[
+		{ id: "dataview", value: "DataView"},
+		{ id: "list", value: "List"},
+		{ id: "menu", value: "Menu"},
+		{ id: "tree", value: "Tree"}
+	]},
+	{id: "tools", icon: "mdi mdi-calendar", value:"Tools", data:[
+		{ id: "kanban", value: "Kanban Board"},
+		{ id: "pivot", value: "Pivot Chart"},
+		{ id: "scheduler", value: "Calendar"}
+	]},
+	{id: "forms", icon: "mdi mdi-pencil", value:"Forms",  data:[
+		{ id: "buttons", value: "Buttons"},
+		{ id: "selects", value: "Select boxes"},
+		{ id: "inputs", value: "Inputs"}
+	]},
+	{id: "demo", icon: "mdi mdi-book", value:"Documentation"}
+];
+
+
+webix.ui({
+    rows: [
+        { view: 'toolbar', elements: [
+            { view: "icon", icon: "mdi mdi-menu", click: function(){
+                $$("$sidebar1").toggle();
+             }
+            },
+            { view: "label", label: "Demo App"},
+            ] },
+        {
+            cols: [
+                {
+                    view: 'sidebar',
+                    data: menu_data,
+                    on:{
+                        onAfterSelect: function(id){
+                          webix.message("Selected: "+this.getItem(id).value)
+                        }
+                    }
+                },
+                { template: ""}
+            ]
+        }
+    ]
+})
+</script>
